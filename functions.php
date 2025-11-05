@@ -62,3 +62,18 @@ function wp_advanced_theme_register_menus()
     ));
 }
 add_action('init', 'wp_advanced_theme_register_menus');
+
+
+
+// Prevent WooCommerce default styles from loading so theme's styles win
+add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+
+// If the above doesn't work in your setup, try dequeuing by handle (alternate):
+function wp_advanced_theme_dequeue_woocommerce_styles()
+{
+    wp_dequeue_style('woocommerce-general');
+    wp_dequeue_style('woocommerce-layout');
+    wp_dequeue_style('woocommerce-smallscreen');
+    wp_dequeue_style('woocommerce_frontend_styles');
+}
+add_action('wp_enqueue_scripts', 'wp_advanced_theme_dequeue_woocommerce_styles', 99);

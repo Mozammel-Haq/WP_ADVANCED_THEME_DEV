@@ -91,6 +91,30 @@ function wp_advanced_theme_customize_register($wp_customize)
         )
     );
 
+    // ------------------ New toggle: Show Cart ------------------ //
+    $wp_customize->add_setting('header_show_cart', array(
+        'default'           => true,
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('header_show_cart', array(
+        'label'   => __('Show Cart Icon', 'wp-advanced-theme'),
+        'section' => 'header_builder_section',
+        'type'    => 'checkbox',
+    ));
+
+    // ------------------ New toggle: Show Account ------------------ //
+    $wp_customize->add_setting('header_show_account', array(
+        'default'           => true,
+        'transport'         => 'refresh',
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    $wp_customize->add_control('header_show_account', array(
+        'label'   => __('Show Account Icon', 'wp-advanced-theme'),
+        'section' => 'header_builder_section',
+        'type'    => 'checkbox',
+    ));
+
     // ===================== FOOTER BUILDER ===================== //
     $wp_customize->add_section('footer_builder_section', array(
         'title' => __('Footer Builder', 'wp-advanced-theme'),
